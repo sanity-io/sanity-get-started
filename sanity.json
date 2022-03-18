@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "project": {
+    "name": "Sanity Studio"
+  },
+  "api": {
+    "projectId": "lpjisfkk",
+    "dataset": "production"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/base/sanity-absolutes",
+      "implements": "part:@sanity/base/absolutes",
+      "path": "plugins/sanity-plugin-tutorial/MyTool"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    }
+  ]
+}
