@@ -65,7 +65,7 @@ export const MyTool = () => {
                 target="_blank"
                 padding={4}
                 tone="primary"
-                text="Got to docs"
+                text="Go to docs"
               />
             </Box>
           </Text>
