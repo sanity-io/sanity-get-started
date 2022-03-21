@@ -1,9 +1,9 @@
-import MyTool from "./MyTool";
-import MyToolIcon from "./MyToolIcon";
+import HelloSanityTutorial from "./HelloSanityTutorial";
+import HelloSanityTutorialIcon from "./HelloSanityTutorialIcon";
 
 export default {
-  title: "MyTool",
-  name: "mytool",
-  icon: MyToolIcon,
-  component: MyTool,
+  title: "HelloSanityTutorial",
+  name: "hellosanitytutorial",
+  icon: HelloSanityTutorialIcon,
+  component: HelloSanityTutorial,
 };

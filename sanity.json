@@ -21,7 +21,7 @@
     {
       "name": "part:@sanity/base/sanity-absolutes",
       "implements": "part:@sanity/base/absolutes",
-      "path": "plugins/sanity-plugin-tutorial/MyTool"
+      "path": "plugins/sanity-plugin-tutorial/HelloSanityTutorial"
     },
     {
       "name": "part:@sanity/desk-tool/structure",
