@@ -11,7 +11,7 @@ import {
 } from "@sanity/ui";
 import { CloseIcon } from "@sanity/icons";
 
-export const MyTool = () => {
+export const HelloSanityTutorial = () => {
   const [showTutorial, setShowTutorial] = useState(
     localStorage.getItem("closedTutorial") === null
   );
@@ -75,4 +75,4 @@ export const MyTool = () => {
   );
 };
 
-export default MyTool;
+export default HelloSanityTutorial;
