@@ -27,21 +27,22 @@ const TextContainer = styled(Text)`
 `;
 
 export const HelloSanityTutorial = () => {
-  const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem("closedTutorial") === null
+  const [hideTutorial, setShowTutorial] = useState(
+    localStorage.getItem("hellosanity_closedTutorial") !== null
   );
 
   const { sanity } = useTheme();
   const [rootElement, setRootElement] = useState();
   const rect = useElementRect(rootElement);
   const isSmallScreen = rect?.width < sanity.media[1];
+  const isProdEnv = process.env.NODE_ENV !== "development";
 
   const onClose = () => {
-    localStorage.setItem("closedTutorial", "true");
-    setShowTutorial(false);
+    localStorage.setItem("hellosanity_closedTutorial", "true");
+    setShowTutorial(true);
   };
 
-  if (!showTutorial) {
+  if (hideTutorial || isProdEnv) {
     return null;
   }
 
