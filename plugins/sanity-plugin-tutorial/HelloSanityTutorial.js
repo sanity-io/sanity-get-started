@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import {
   Card,
-  Box,
+  Container,
   Button,
   Flex,
   Label,
   Heading,
   Text,
   Stack,
+  useElementRect,
+  useTheme,
 } from "@sanity/ui";
 import { CloseIcon } from "@sanity/icons";
 
@@ -15,6 +17,10 @@ export const HelloSanityTutorial = () => {
   const [showTutorial, setShowTutorial] = useState(
     localStorage.getItem("closedTutorial") === null
   );
+
+  const { sanity } = useTheme();
+  const rect = useElementRect(document.body);
+  const isSmallScreen = rect?.width < sanity.media[1];
 
   const onClose = () => {
     localStorage.setItem("closedTutorial", "true");
@@ -25,50 +31,63 @@ export const HelloSanityTutorial = () => {
     showTutorial && (
       <Card
         tone="primary"
-        style={{
-          order: -1,
-        }}
+        paddingY={isSmallScreen ? 3 : 5}
+        paddingX={isSmallScreen ? 3 : 5}
       >
-        <Flex justify={"flex-end"} paddingTop={5} paddingRight={5}>
-          <Button
-            aria-label="Close dialog"
-            icon={
-              <Text muted size={1}>
-                <CloseIcon />
-              </Text>
-            }
-            mode="bleed"
-            onClick={onClose}
-            padding={3}
-          />
-        </Flex>
-
-        <Stack space={4} paddingTop={6} paddingBottom={7}>
-          <Text align="center">
+        <Flex
+          justify={isSmallScreen ? "space-between" : "flex-end"}
+          align="center"
+        >
+          {isSmallScreen && (
             <Label as="p" muted>
               Get started with sanity
             </Label>
+          )}
 
-            <Heading as="h1">
-              <h1>Your Sanity Studio is all set up!</h1>
-            </Heading>
+          <Button
+            aria-label="Close dialog"
+            icon={CloseIcon}
+            mode="bleed"
+            onClick={onClose}
+            padding={isSmallScreen ? undefined : 3}
+          />
+        </Flex>
+        <Stack space={4}>
+          {!isSmallScreen && (
+            <>
+              <Label as="p" muted align="center">
+                Get started with sanity
+              </Label>
 
-            <Text as="p" muted size={2}>
-              It’s time to learn how to build schemas, create content and
-              connect it with other applications.
+              <Heading as="h1" size={5} align="center">
+                Your Sanity Studio is all set up!
+              </Heading>
+            </>
+          )}
+
+          <Container width={1}>
+            <Text
+              as="p"
+              muted
+              size={isSmallScreen ? 1 : undefined}
+              align={isSmallScreen ? "start" : "center"}
+            >
+              Next, our docs will guide you through building schemas, adding
+              content, and connecting a frontend. You’ll see updates reflected
+              in your Studio below.
             </Text>
+          </Container>
 
-            <Box paddingTop={5}>
-              <Button
-                as="a"
-                href="https://www-sanity-io-ir5wewhq6.sanity.build/docs/create-your-first-schema"
-                target="_blank"
-                padding={4}
-                tone="primary"
-                text="Go to docs"
-              />
-            </Box>
-          </Text>
+          <Flex justify={isSmallScreen ? "start" : "center"}>
+            <Button
+              as="a"
+              href="https://www-sanity-io-ir5wewhq6.sanity.build/docs/create-your-first-schema"
+              target="_blank"
+              padding={isSmallScreen ? undefined : 4}
+              tone="primary"
+              text="Go to docs"
+            />
+          </Flex>
         </Stack>
       </Card>
     )
