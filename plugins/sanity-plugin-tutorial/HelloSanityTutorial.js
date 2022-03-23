@@ -28,7 +28,7 @@ const TextContainer = styled(Text)`
 
 export const HelloSanityTutorial = () => {
   const [hideTutorial, setShowTutorial] = useState(
-    localStorage.getItem("hellosanity_closedTutorial") !== null
+    window.localStorage.getItem("hellosanity_closedTutorial") !== null
   );
 
   const { sanity } = useTheme();
@@ -38,7 +38,7 @@ export const HelloSanityTutorial = () => {
   const isProdEnv = process.env.NODE_ENV !== "development";
 
   const onClose = () => {
-    localStorage.setItem("hellosanity_closedTutorial", "true");
+    window.localStorage.setItem("hellosanity_closedTutorial", "true");
     setShowTutorial(true);
   };
 
