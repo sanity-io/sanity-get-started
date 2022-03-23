@@ -58,7 +58,7 @@ export const HelloSanityTutorial = () => {
         >
           {isSmallScreen && (
             <LabelContainer forwardedAs="p">
-              Get started with sanity
+              Your Sanity Studio is all set up!
             </LabelContainer>
           )}
 
