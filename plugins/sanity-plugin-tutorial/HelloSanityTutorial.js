@@ -50,7 +50,7 @@ export const HelloSanityTutorial = () => {
       <Card
         tone="primary"
         padding={isSmallScreen ? 3 : 5}
-        paddingBottom={isSmallScreen ? 3 : 6}
+        paddingBottom={isSmallScreen ? 4 : 6}
       >
         <Flex
           justify={isSmallScreen ? "space-between" : "flex-end"}
