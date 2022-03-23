@@ -12,6 +12,19 @@ import {
   useTheme,
 } from "@sanity/ui";
 import { CloseIcon } from "@sanity/icons";
+import styled, { css } from "styled-components";
+
+const BlueColor = css`
+  color: ${({ theme }) => theme.sanity.color.muted.primary.enabled.fg};
+`;
+
+const LabelContainer = styled(Label)`
+  ${BlueColor}
+`;
+
+const TextContainer = styled(Text)`
+  ${BlueColor}
+`;
 
 export const HelloSanityTutorial = () => {
   const [showTutorial, setShowTutorial] = useState(
@@ -19,7 +32,8 @@ export const HelloSanityTutorial = () => {
   );
 
   const { sanity } = useTheme();
-  const rect = useElementRect(document.body);
+  const [rootElement, setRootElement] = useState();
+  const rect = useElementRect(rootElement);
   const isSmallScreen = rect?.width < sanity.media[1];
 
   const onClose = () => {
@@ -27,21 +41,25 @@ export const HelloSanityTutorial = () => {
     setShowTutorial(false);
   };
 
+  if (!showTutorial) {
+    return null;
+  }
+
   return (
-    showTutorial && (
+    <div ref={setRootElement}>
       <Card
         tone="primary"
-        paddingY={isSmallScreen ? 3 : 5}
-        paddingX={isSmallScreen ? 3 : 5}
+        padding={isSmallScreen ? 3 : 5}
+        paddingBottom={isSmallScreen ? 3 : 6}
       >
         <Flex
           justify={isSmallScreen ? "space-between" : "flex-end"}
           align="center"
         >
           {isSmallScreen && (
-            <Label as="p" muted>
+            <LabelContainer forwardedAs="p">
               Get started with sanity
-            </Label>
+            </LabelContainer>
           )}
 
           <Button
@@ -52,30 +70,29 @@ export const HelloSanityTutorial = () => {
             padding={isSmallScreen ? undefined : 3}
           />
         </Flex>
-        <Stack space={4}>
+        <Stack space={5}>
           {!isSmallScreen && (
             <>
-              <Label as="p" muted align="center">
+              <LabelContainer forwardedAs="p" align="center">
                 Get started with sanity
-              </Label>
+              </LabelContainer>
 
-              <Heading as="h1" size={5} align="center">
+              <Heading as="h1" size={4} align="center">
                 Your Sanity Studio is all set up!
               </Heading>
             </>
           )}
 
           <Container width={1}>
-            <Text
-              as="p"
-              muted
+            <TextContainer
+              forwardedAs="p"
               size={isSmallScreen ? 1 : undefined}
               align={isSmallScreen ? "start" : "center"}
             >
               Next, our docs will guide you through building schemas, adding
               content, and connecting a frontend. You’ll see updates reflected
               in your Studio below.
-            </Text>
+            </TextContainer>
           </Container>
 
           <Flex justify={isSmallScreen ? "start" : "center"}>
@@ -90,7 +107,7 @@ export const HelloSanityTutorial = () => {
           </Flex>
         </Stack>
       </Card>
-    )
+    </div>
   );
 };
 
