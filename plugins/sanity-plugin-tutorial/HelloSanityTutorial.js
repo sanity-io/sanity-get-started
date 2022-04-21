@@ -103,7 +103,7 @@ export const HelloSanityTutorial = () => {
               target="_blank"
               padding={isSmallScreen ? undefined : 4}
               tone="primary"
-              text="Go to docs"
+              text="Build a schema"
             />
           </Flex>
         </Stack>
